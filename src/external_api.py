@@ -27,12 +27,12 @@ class ConnectAPIHeadHunter(ConnectorAPI):
         else:
             print('Ошибка подключения к API HeadHunter, код ошибки: {}'.format(response.status_code))
 
-    def get_vacancies(self, text: str = None, per_page: int = 1) -> list:
+    def get_vacancies(self, text: str = None, per_page: str = "1") -> list:
         if text is not None:
             split_text = text.split(", ")
             text = " AND ".join(split_text)
 
-        per_page = int(per_page)
+        per_page = int(per_page) if per_page.isdigit() else 1
 
         if per_page < 0:
             per_page = 1
