@@ -48,7 +48,7 @@ def work_with_api():
         vacancy = Vacancy(el, list_vacancies)
         print(str(vacancy))
 
-    print("Вы хотите сохранить данный список вакансий в файл?")
+    print("Вы хотите сохранить/добавить данный список вакансий в файл?")
 
     user_input_add = ""
 
@@ -66,29 +66,53 @@ def work_with_api():
     else:
         print("Завершение работы приложения")
 
-# def work_with_files():
-#     json_handler = JsonFileHandler()
-#     json_handler.write_data(list_vacancies)
-#     json_handler.delete_data("116345295")
-#     json_read = json_handler.read_data()
-#
-#     for el in json_read:
-#         print(el)
+
+def work_with_files():
+    print()
+    print("Вы выбрали работу с файлами")
+
+    user_input_delete = input("Введите название файла: ")
+    filename = user_input_delete + ".json" if user_input_delete.isalpha() else "default.json"
+
+    json_handler = JsonFileHandler(filename)
+    json_read = json_handler.read_data()
+
+    print()
+    for el in json_read:
+        print(el)
+
+    id_delete = ""
+
+    while id_delete != "выход":
+        print()
+        id_delete = input("Выберите и введите id вакансии которую вы хотите удалить "
+                          "или введите 'выход' для завершения работы с файлом: ").lower()
+        json_handler.delete_data(id_delete)
+
+        json_read = json_handler.read_data()
+
+        if id_delete != "выход":
+            print()
+            for el in json_read:
+                print(el)
+        else:
+            print("Завершение работы приложения")
 
 
 def main():
     print("Добро пожаловать!")
-    print("Вы хотите получить список вакансий с сайта hh.ru или начать работу с файломами?")
+    print("Вы хотите получить список вакансий с сайта hh.ru или удалить вакансию из файла?")
 
     user_input_choice = ""
 
-    while user_input_choice not in ['hh', 'файлы']:
-        user_input_choice = input("Введите 'hh' чтобы начать работу с api или 'файлы' для работы с файлами: ").lower()
+    while user_input_choice not in ['hh', 'удалить']:
+        user_input_choice = input(
+            "Введите 'hh' чтобы начать работу с api или 'удалить' для удаление вакансии из файла: ").lower()
 
     if user_input_choice == "hh":
         work_with_api()
-    else:
-        pass
+    elif user_input_choice == "удалить":
+        work_with_files()
 
 
 main()
