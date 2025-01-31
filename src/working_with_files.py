@@ -38,6 +38,8 @@ class JsonFileHandler(AbstractFileHandler):
                 return json.load(file)
         except json.JSONDecodeError:
             return []
+        except FileNotFoundError:
+            return []
 
     def write_data(self, data: list) -> None:
         """Добавление данных в JSON-файл."""
