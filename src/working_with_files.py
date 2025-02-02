@@ -1,5 +1,5 @@
-import os
 import json
+import os
 from abc import ABC, abstractmethod
 from typing import Any
 
@@ -25,11 +25,12 @@ class AbstractFileHandler(ABC):
 
 
 class JsonFileHandler(AbstractFileHandler):
+    """Класс отвечает за работу с файлами, позволяя считывать, записывать и удалять данные в указанный файл"""
 
     def __init__(self, path_file="default.json"):
         self.__path_file = path_file
 
-    def read_data(self):
+    def read_data(self) -> Any:
         """Получение данных из JSON-файла."""
         full_path_file = os.path.join(base_dir, "data", self.__path_file)
 

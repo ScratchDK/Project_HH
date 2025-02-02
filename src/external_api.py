@@ -1,6 +1,7 @@
-import requests
-
 from abc import ABC, abstractmethod
+from typing import Any
+
+import requests
 
 
 class ConnectorAPI(ABC):
@@ -14,11 +15,12 @@ class ConnectorAPI(ABC):
 
 
 class ConnectAPIHeadHunter(ConnectorAPI):
+    """Класс отвечает за подключение к внешнему api 'hh.ru' и получения списка вакансий"""
 
     def __init__(self):
         self.__vacancies = {}
 
-    def _connect(self, params=None):
+    def _connect(self, params=None) -> Any:
         response = requests.get('https://api.hh.ru/vacancies', params=params)
 
         if response.status_code == 200:

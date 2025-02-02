@@ -11,7 +11,7 @@ from src.working_with_files import JsonFileHandler
         (["hh", "Пятигорск", "3", "нет", "нет"], "Вы выбрали работу с api hh.ru", 'РУКОВОДИТЕЛЬ ГРУППЫ МАГАЗИНОВ', 3),
         (["удалить", "test", "116566958", "116627013", "выход"], "Вы выбрали работу с файлами",
          "{'id': '116285274', 'name': 'Администратор', "
-         "'salary': {'from': 50000, 'to': None}, "
+         "'salary': {'from': 0, 'to': None}, "
          "'address': {'raw': 'Пятигорск, Бештаугорское шоссе'}, "
          "'alternate_url': 'https://hh.ru/vacancy/116285274', "
          "'snippet': {'requirement': None, 'responsibility': 'Прием звонков компании. "

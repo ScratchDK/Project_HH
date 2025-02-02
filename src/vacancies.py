@@ -1,4 +1,7 @@
 class Vacancy:
+    """Класс отвечает за инициализацию вакансий, позволяет вывести все вакансии
+     в виде списка словарей, а также произвести сравнения между обьектами класса"""
+
     __slots__ = ['id', 'name', 'address', 'salary_from', 'salary_to', 'requirement',
                  'responsibility', 'vacancy', 'list_vacancies', 'url']
 
@@ -47,7 +50,7 @@ class Vacancy:
                 f"Ссылка: {self.url}\n")
 
     @staticmethod
-    def __validate_data(data):
+    def __validate_data(data: dict) -> bool:
         if not isinstance(data, dict):
             return False
         if "snippet" not in data or "address" not in data or "salary" not in data:
@@ -55,36 +58,36 @@ class Vacancy:
         return True
 
     @staticmethod
-    def __validate_salary_from(data):
+    def __validate_salary_from(data: dict) -> int | float:
         result = data["salary"].get("from") if data.get("salary") else 0
         return result if result is not None else 0
 
     @staticmethod
-    def __validate_salary_to(data):
+    def __validate_salary_to(data: dict) -> int | float:
         result = data["salary"].get("to") if data.get("salary") else 0
         return result if result is not None else 0
 
-    def __gt__(self, other):
+    def __gt__(self, other) -> str | bool:
         if not isinstance(other, Vacancy):
-            return NotImplemented
+            return "incorrect comparison"
         return self.salary_from > other.salary_from
 
-    def __lt__(self, other):
+    def __lt__(self, other) -> str | bool:
         if not isinstance(other, Vacancy):
-            return NotImplemented
+            return "incorrect comparison"
         return self.salary_from < other.salary_from
 
-    def __le__(self, other):
+    def __le__(self, other) -> str | bool:
         if not isinstance(other, Vacancy):
-            return NotImplemented
+            return "incorrect comparison"
         return self.salary_from <= other.salary_from
 
-    def __ge__(self, other):
+    def __ge__(self, other) -> str | bool:
         if not isinstance(other, Vacancy):
-            return NotImplemented
+            return "incorrect comparison"
         return self.salary_from >= other.salary_from
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> str | bool:
         if not isinstance(other, Vacancy):
-            return NotImplemented
+            return "incorrect comparison"
         return self.salary_from == other.salary_from

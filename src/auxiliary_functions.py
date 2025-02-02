@@ -4,6 +4,7 @@ from src.working_with_files import JsonFileHandler
 
 
 def sorted_by_salary(data: list) -> list:
+    """Функция сортирует вакансий от большей к меньшей"""
     for el in data:
         if el["salary"] is None:
             el["salary"] = {"from": 0}
@@ -14,7 +15,9 @@ def sorted_by_salary(data: list) -> list:
     return new_list
 
 
-def work_with_api():
+def work_with_api() -> None:
+    """Функция отвечает за диалог с пользователем, давая возможнось
+    получить список вакансий по ключевым словам и записать их в выбраный файл"""
     data_api = ConnectAPIHeadHunter()
 
     print()
@@ -70,7 +73,8 @@ def work_with_api():
         print("Завершение работы приложения")
 
 
-def work_with_files():
+def work_with_files() -> None:
+    """Функция отвечает за диалог с пользователем, давая возможность удалить нужную вакансию из выбранного файла"""
     print()
     print("Вы выбрали работу с файлами")
 
