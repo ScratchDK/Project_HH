@@ -17,4 +17,5 @@ def main():
         work_with_files()
 
 
-main()
+if __name__ == "__main__":
+    main()

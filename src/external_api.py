@@ -34,9 +34,7 @@ class ConnectAPIHeadHunter(ConnectorAPI):
 
         per_page = int(per_page) if per_page.isdigit() else 1
 
-        if per_page < 0:
-            per_page = 1
-        elif per_page > 100:
+        if per_page > 100:
             per_page = 100
 
         params = {"text": text, "per_page": per_page}
